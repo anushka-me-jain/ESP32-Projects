@@ -7,8 +7,8 @@
 #include <WiFiClient.h>
 #include <BlynkSimpleEsp32.h>
 
-char ssid[] = "darpan4g";
-char pass[] = "#Darpan#jain1";
+char ssid[] = "SSID";
+char pass[] = "PASSWORD";
 char auth[] = "8txRdyG9jKUCI8Ak1a2FCo4WfXkYSuky";
 
 #define relay1 13
