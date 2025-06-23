@@ -29,14 +29,6 @@ void checkButtonState(){
 void setup() {
   Serial.begin(115200);
   Blynk.begin(BLYNK_AUTH_TOKEN, SSID, PASSWORD);
-  if(Blynk.connect())
-  {
-    Serial.println("BLYNK CONNECTED.");
-  }
-  else
-  {
-    Serial.println("BLYNK DISCONNECTED.");
-  }
   pinMode (relay1, OUTPUT);   //relay in normally open mode (IN pin = 0V, relay OFF)
   digitalWrite(relay1, relay_state); 
   timer.setInterval(100L, checkButtonState);
@@ -53,12 +45,7 @@ BLYNK_WRITE(V0)
 }
 
 void loop() {
-  if(WiFi.status() != WL_CONNECTED)
-  {
-    Serial.println("WIFI NOT CONNECTED!");
-    WiFi.reconnect();
-    delay(5000);
-  }
+  
   Blynk.run();
   timer.run();
 }
