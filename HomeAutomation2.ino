@@ -6,7 +6,7 @@
 #include <BlynkSimpleEsp32.h>
 
 #define relay1 13
-#define push_btn 14
+#define push_btn 27
 #define virtual_pin1 V0
 int last_button_state = HIGH;
 int relay_state = LOW;
@@ -17,6 +17,7 @@ void checkButtonState(){
   int current_button_state = digitalRead(push_btn);
   if(last_button_state == HIGH && current_button_state == LOW)
   {  
+    delay(50);
     Serial.println("Button Pressed!");
     relay_state = !relay_state;
     digitalWrite(relay1, relay_state);
@@ -29,6 +30,7 @@ void checkButtonState(){
 void setup() {
   Serial.begin(115200);
   Blynk.begin(BLYNK_AUTH_TOKEN, SSID, PASSWORD);
+  pinMode(push_btn, INPUT_PULLUP);
   pinMode (relay1, OUTPUT);   //relay in normally open mode (IN pin = 0V, relay OFF)
   digitalWrite(relay1, relay_state); 
   timer.setInterval(100L, checkButtonState);
